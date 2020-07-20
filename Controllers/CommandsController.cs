@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Commander.Data;
 using Commander.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -29,6 +30,16 @@ namespace Commander.Controllers{
             var commandItem = _repo.GetCommandById(id);
             return Ok(commandItem);
         }
-
+        //  public class Command{
+        // public int Id { get; set; }
+        // public string HowTo { get; set; }
+        // public string  Line { get; set; }
+        // public string  Platform { get; set; }
+        [HttpPost]
+        public ActionResult<Command> PostCommand(Command command){
+            var cmd =  _repo.PostCommand(command);
+            // return CreatedAtAction(nameof(GetCommandById), new {id = command.Id}, cmd);
+            return Ok(cmd);
+        }
     }
 }
