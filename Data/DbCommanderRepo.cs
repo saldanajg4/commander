@@ -26,12 +26,12 @@ namespace Commander.data{
                 .FirstOrDefault();
         }
 
-        public Command PostCommand(Command command)
+        public int PostCommand(Command command)
         {
             _context.Commands.Add(command);
-            _context.SaveChangesAsync();
+            return _context.SaveChanges();
 
-            return command;
+          
 
         }
     }

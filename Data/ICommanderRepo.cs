@@ -8,6 +8,6 @@ namespace Commander.Data{
     {
         IEnumerable<Command> GetAppCommands();
         Command GetCommandById(int id);
-        Command PostCommand(Command command);
+        int PostCommand(Command command);
     }
 }

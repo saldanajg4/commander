@@ -30,11 +30,13 @@ namespace Commander
         //If needs to change we only change the MockCommanderRepo concrete class
         public void ConfigureServices(IServiceCollection services)
         {
-            // services.AddDbContext<CommanderContext>(opt => opt.UseSqlServer
-            //     (Configuration.GetConnectionString("CommanderConnection"))
-            // );
-            services.AddDbContext<CommanderContext>(opt =>
-               opt.UseInMemoryDatabase("CommaderList"));
+            services.AddDbContext<CommanderContext>(opt => opt.UseSqlServer
+                (Configuration.GetConnectionString("CommanderConnection"))
+            );
+            // services.AddDbContext<CommanderContext>(opt =>
+            //    opt.UseInMemoryDatabase("CommaderList"));
+
+   
 
             services.AddControllers();
             // services.AddScoped<ICommanderRepo, MockCommanderRepo>();

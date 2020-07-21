@@ -39,16 +39,17 @@ namespace Commander.Data
         //     commands.Add(command);
         //     return commands;
         // }
-        public Command PostCommand(Command command)
+        public int PostCommand(Command command)
         {
             //  _context.Commands.Add(command);
             // await _context.SaveChangesAsync();
 
             // return command;
 
-             commands.Add(command);
+              commands.Add(command);
+    
            
-            return command;
+            return 1;
 
         }
     }

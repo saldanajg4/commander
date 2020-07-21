@@ -38,8 +38,8 @@ namespace Commander.Controllers{
         [HttpPost]
         public ActionResult<Command> PostCommand(Command command){
             var cmd =  _repo.PostCommand(command);
-            // return CreatedAtAction(nameof(GetCommandById), new {id = command.Id}, cmd);
-            return Ok(cmd);
+            // return Ok(CreatedAtAction(nameof(GetCommandById), new {id = command.Id}, command));
+            return Ok(cmd + " row inserted.");
         }
     }
 }
