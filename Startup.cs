@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,16 +31,18 @@ namespace Commander
         //If needs to change we only change the MockCommanderRepo concrete class
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<CommanderContext>(opt => opt.UseSqlServer
-                (Configuration.GetConnectionString("CommanderConnection"))
-            );
-            // services.AddDbContext<CommanderContext>(opt =>
-            //    opt.UseInMemoryDatabase("CommaderList"));
+            var builder = new SqlConnectionStringBuilder();
+            builder.ConnectionString =Configuration.GetConnectionString("CommanderConnection");
+            builder.UserID= Configuration["UserID"];
+            builder.Password = Configuration["Password"];
 
-   
+            services.AddDbContext<CommanderContext>(opt => opt.UseSqlServer
+                // (Configuration.GetConnectionString("CommanderConnection"))
+                (builder.ConnectionString)
+            );
+
 
             services.AddControllers();
-            // services.AddScoped<ICommanderRepo, MockCommanderRepo>();
             services.AddScoped<ICommanderRepo, DbCommanderRepo>();
         }
 
